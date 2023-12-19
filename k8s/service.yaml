@@ -1,0 +1,15 @@
+# service semelhante a um load balancer
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: "book-api-service"
+spec:
+  selector:
+    app: "book-api"
+  type: ClusterIP # ClusterIP, NodePort, LoadBalancer, ExternalName
+  ports:
+    - protocol: "TCP"
+      port: 8080
+      targetPort: 8080
+
