@@ -19,6 +19,7 @@ func Books(w http.ResponseWriter, r *http.Request) {
 		{Title: "The Hitchhiker's Guide to the Galaxy", Author: "Douglas Adams", ISBN: "0345391802"},
 		{Title: "The Hobbit", Author: "J.R.R. Tolkien", ISBN: "0345391802"},
 		{Title: "The Lord of the Rings", Author: "J.R.R. Tolkien", ISBN: "0345391802"},
+		{Title: "The Silmarillion", Author: "J.R.R. Tolkien", ISBN: "0345391802"},
 	}
 	w.Header().Set("Content-Type", "application/json")
 	encoder := json.NewEncoder(w)
