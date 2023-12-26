@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app: "book-api"
-  replicas: 8
+  replicas: 2
   template:
     metadata:
       labels:
@@ -17,4 +17,12 @@ spec:
     spec:
       containers:
         - name: "book-api"
-          image: "motivado/hello-k8s:v3"
+          image: "motivado/hello-k8s:v4" 
+          envFrom:
+            - configMapRef:
+                name: book-api-config         
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "128Mi"
+            

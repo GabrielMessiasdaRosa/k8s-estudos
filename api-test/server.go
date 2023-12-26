@@ -4,10 +4,13 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"os"
 )
 
 func main() {
 	http.HandleFunc("/", Books)
+	http.HandleFunc("/envs", Envs)
+	http.HandleFunc("/family", Family)
 	err := http.ListenAndServe(":3000", nil)
 	if err != nil {
 		log.Fatal(err)
@@ -30,4 +33,23 @@ type Book struct {
 	Title  string `json:"title"`
 	Author string `json:"author"`
 	ISBN   string `json:"isbn"`
+}
+
+func Envs(w http.ResponseWriter, r *http.Request) {
+	name := os.Getenv("NAME")
+	age := os.Getenv("AGE")
+	w.Header().Set("Content-Type", "application/json")
+	encoder := json.NewEncoder(w)
+	encoder.Encode(map[string]string{"name": name, "age": age})
+
+}
+
+func Family(w http.ResponseWriter, r *http.Request) {
+	family, err := os.ReadFile("myfamily/family.json")
+	if err != nil {
+		log.Fatal(err)
+	}
+	w.Header().Set("Content-Type", "application/json")
+	encoder := json.NewEncoder(w)
+	encoder.Encode(family)
 }
