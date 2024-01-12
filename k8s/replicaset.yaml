@@ -17,4 +17,4 @@ spec:
     spec:
       containers:
         - name: "book-api"
-          image: "motivado/hello-k8s:v4"
+          image: "motivado/hello-k8s:v5"

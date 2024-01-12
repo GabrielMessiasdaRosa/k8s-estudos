@@ -7,10 +7,11 @@ metadata:
 spec:
   selector:
     app: "book-api"
-  type: ClusterIP # ClusterIP, NodePort, LoadBalancer, ExternalName
+  type: LoadBalancer # ClusterIP, NodePort, LoadBalancer, ExternalName
   # CLusterIp é o tipo de service padrao, usado para comunicação interna entre os pods
 
   ports:
-    - protocol: "TCP"
+    - name: book-api-server
+      protocol: TCP
       port: 80
       targetPort: 3000

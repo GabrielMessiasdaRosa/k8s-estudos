@@ -45,7 +45,7 @@ func Envs(w http.ResponseWriter, r *http.Request) {
 }
 
 func Family(w http.ResponseWriter, r *http.Request) {
-	family, err := os.ReadFile("myfamily/family.json")
+	family, err := os.ReadFile("/go/myfamily/family.json")
 	if err != nil {
 		log.Fatal(err)
 	}
