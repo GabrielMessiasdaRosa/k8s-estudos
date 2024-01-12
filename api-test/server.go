@@ -10,7 +10,6 @@ import (
 func main() {
 	http.HandleFunc("/", Books)
 	http.HandleFunc("/envs", Envs)
-	http.HandleFunc("/family", Family)
 	err := http.ListenAndServe(":3000", nil)
 	if err != nil {
 		log.Fatal(err)
@@ -42,14 +41,4 @@ func Envs(w http.ResponseWriter, r *http.Request) {
 	encoder := json.NewEncoder(w)
 	encoder.Encode(map[string]string{"name": name, "age": age})
 
-}
-
-func Family(w http.ResponseWriter, r *http.Request) {
-	family, err := os.ReadFile("/go/myfamily/family.json")
-	if err != nil {
-		log.Fatal(err)
-	}
-	w.Header().Set("Content-Type", "application/json")
-	encoder := json.NewEncoder(w)
-	encoder.Encode(family)
 }
