@@ -2,12 +2,26 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
+	"time"
 )
 
+var startedAt = time.Now()
+
 func main() {
+	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
+		duration := time.Since(startedAt)
+		if duration.Seconds() > 20 {
+			w.WriteHeader(500)
+			w.Write([]byte(fmt.Sprintf("Server is not healthy: %s", duration)))
+		} else {
+			w.WriteHeader(200)
+			w.Write([]byte("Server is healthy"))
+		}
+	})
 	http.HandleFunc("/", Books)
 	http.HandleFunc("/envs", Envs)
 	err := http.ListenAndServe(":3000", nil)
