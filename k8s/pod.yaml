@@ -11,5 +11,6 @@ metadata:
 spec:
   containers:
     - name: "book-api"
-      image: "motivado/hello-k8s:v5"
+      image: "motivado/hello-k8s:v5.2"
 
+# OBS, NAO PRECISO DE UM POD CONFIGURADO, REPLICASET CRIA UM POD
