@@ -17,16 +17,30 @@ spec:
     spec:
       containers:
         - name: "book-api"
-          image: "motivado/hello-k8s:v5.1"
+          image: "motivado/hello-k8s:v7"
+
+          startupProbe:
+            httpGet:
+              path: /
+              port: 3000
+            periodSeconds: 3
+            failureThreshold: 30
+          
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            periodSeconds: 3
+            failureThreshold: 1
+
           livenessProbe:
             httpGet:
-              path: /health
-              port: 8080
-            initialDelaySeconds: 5
+              path: /
+              port: 3000
             periodSeconds: 5
             timeoutSeconds: 1
-            failureThreshold: 3
-            successThreshold: 1
+            failureThreshold: 1
+            successThreshold: 1 
           envFrom:
             - configMapRef:
                 name: book-api-config
