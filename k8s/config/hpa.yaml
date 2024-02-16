@@ -9,4 +9,4 @@ spec:
     name: book-api
   minReplicas: 2
   maxReplicas: 8
-  targetCPUUtilizationPercentage: 13
+  targetCPUUtilizationPercentage: 25
