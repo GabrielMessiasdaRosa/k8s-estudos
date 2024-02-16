@@ -45,7 +45,10 @@ spec:
             - configMapRef:
                 name: book-api-config
           resources:
+            requests:
+              cpu: "0.1"
+              memory: "20Mi"
             limits:
-              cpu: "500m"
-              memory: "128Mi"
+              cpu: "0.2"
+              memory: "25Mi"
             
